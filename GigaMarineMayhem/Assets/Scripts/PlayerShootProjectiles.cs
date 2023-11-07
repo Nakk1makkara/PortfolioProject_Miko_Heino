@@ -4,16 +4,32 @@ using UnityEngine;
 
 public class PlayerShootProjectiles : MonoBehaviour
 {
-    [SerializeField] private Transform pfBullet;
+    [SerializeField] private GameObject pfBullet;
+    [SerializeField] private Transform Muzzle;
+    [SerializeField] private PlayerAimWeapon playerAimWeapon; 
 
+    private void Awake()
+    {
+        
+    }
 
-   private void Awake () {
-    GetComponent<CharacterAim_Base>().OnShoot += PlayerShootProjectiles_OnShoot;
-   }
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            PlayerShootProjectiles_OnShoot();
+        }
+    }
 
-   private void PlayerShootProjectiles_OnShoot(object sender, CharacterAim_Base.OnShootEventArgs e) {
-    
-    Instantiate(pfBullet, e.gunEndPointPosition, Quaternion.identity);
+    private void PlayerShootProjectiles_OnShoot()
+    {
+        Vector3 aimDirection = playerAimWeapon.aimDirection.normalized;
+        GameObject bullet = Instantiate(pfBullet, Muzzle.position, Quaternion.identity);
+        Bullet bulletScript = bullet.GetComponent<Bullet>();
 
-   }
+        if (bulletScript != null)
+        {
+            bulletScript.SetInitialDirection(aimDirection);
+        }
+    }
 }
