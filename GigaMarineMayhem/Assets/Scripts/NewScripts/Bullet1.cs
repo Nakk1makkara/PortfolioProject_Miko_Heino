@@ -6,6 +6,7 @@ public class Bullet1 : MonoBehaviour
 {
     
     public GameObject hitEffect;
+    public int damage = 10;
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -13,4 +14,14 @@ public class Bullet1 : MonoBehaviour
         Destroy(effect, 1f);
         Destroy(gameObject);
     }
+
+    void OnTriggerEnter2D (Collider2D hitInfo)
+    {
+        Enemy enemy = hitInfo.GetComponent<Enemy>();
+        if (enemy != null)
+        {
+            enemy.TakeDamage(damage);
+        }
+    }
+
 }
