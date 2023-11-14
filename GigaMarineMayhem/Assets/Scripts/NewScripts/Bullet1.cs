@@ -8,13 +8,7 @@ public class Bullet1 : MonoBehaviour
     public GameObject hitEffect;
     public int damage = 10;
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
-        Destroy(effect, 1f);
-        Destroy(gameObject);
-    }
-
+    
     void OnTriggerEnter2D (Collider2D hitInfo)
     {
         Enemy enemy = hitInfo.GetComponent<Enemy>();
@@ -22,6 +16,10 @@ public class Bullet1 : MonoBehaviour
         {
             enemy.TakeDamage(damage);
         }
+        GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
+        Destroy(effect, 1f);
+        Destroy(gameObject);
+
     }
 
 }
