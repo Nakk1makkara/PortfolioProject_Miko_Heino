@@ -201,10 +201,10 @@ GameObject:
   - component: {fileID: 2433349565400143312}
   - component: {fileID: 404129196702711076}
   - component: {fileID: 2433349565400143318}
-  - component: {fileID: 3636861666458442704}
   - component: {fileID: 4013278144162508480}
   - component: {fileID: 7569468371238838456}
   - component: {fileID: 1844958129384239065}
+  - component: {fileID: 7519120635029056450}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -332,27 +332,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!50 &3636861666458442704
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2433349565400143313}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 0
 --- !u!114 &4013278144162508480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,7 +376,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 7903234002837184767, guid: cc94dd4579295d748ae24f3e7805fa42, type: 3}
   speed: 1
-  maxRandomOffset: 0.1
+--- !u!114 &7519120635029056450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2433349565400143313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f15c42d12aa0194ca975ed22aa265fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  playerHealth: {fileID: 532852352984099484, guid: cc94dd4579295d748ae24f3e7805fa42, type: 3}
 --- !u!1 &2433349566456804890
 GameObject:
   m_ObjectHideFlags: 0
