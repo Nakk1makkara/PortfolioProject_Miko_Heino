@@ -344,7 +344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dddc564373c44c94c89c6946c62fead4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 20
   deathEffect: {fileID: 1768363113147554037, guid: 3d909d05b38318e43b102e504ee13db8, type: 3}
 --- !u!58 &7569468371238838456
 CircleCollider2D:
@@ -375,7 +375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 7903234002837184767, guid: cc94dd4579295d748ae24f3e7805fa42, type: 3}
-  speed: 1
+  speed: 5
 --- !u!114 &7519120635029056450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -389,6 +389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
+  damageInterval: 1
   playerHealth: {fileID: 532852352984099484, guid: cc94dd4579295d748ae24f3e7805fa42, type: 3}
 --- !u!1 &2433349566456804890
 GameObject:
