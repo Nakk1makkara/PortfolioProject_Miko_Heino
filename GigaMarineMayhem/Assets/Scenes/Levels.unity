@@ -597,8 +597,8 @@ GameObject:
   - component: {fileID: 516253478}
   - component: {fileID: 516253477}
   - component: {fileID: 516253481}
-  - component: {fileID: 516253483}
   - component: {fileID: 516253482}
+  - component: {fileID: 516253483}
   m_Layer: 5
   m_Name: Levels
   m_TagString: Untagged
@@ -813,7 +813,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 516253474}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b923bfb698d3d9c4aa1e4d0769a8e889, type: 3}
+  m_Script: {fileID: 11500000, guid: 70666afbea8f48b458404474915dff23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &633335041
@@ -2541,7 +2541,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516253483}
         m_TargetAssemblyTypeName: LevelsScript, Assembly-CSharp
         m_MethodName: BackToMainMenu
         m_Mode: 1

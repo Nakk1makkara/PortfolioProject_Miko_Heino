@@ -1,25 +1,42 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 public class Bullet1 : MonoBehaviour
 {
-    
     public GameObject hitEffect;
     public int damage = 10;
 
-    
-    void OnTriggerEnter2D (Collider2D hitInfo)
+    private bool hasHit = false;
+
+    void Start()
     {
-        Enemy enemy = hitInfo.GetComponent<Enemy>();
-        if (enemy != null)
+        StartCoroutine(DestroyAfterDelay(10f));
+    }
+
+    void OnTriggerEnter2D(Collider2D hitInfo)
+    {
+        if (hitInfo.CompareTag("Enemy"))
         {
-            enemy.TakeDamage(damage);
+            Enemy enemy = hitInfo.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(damage);
+                hasHit = true;
+            }
         }
+
         GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
         Destroy(effect, 1f);
         Destroy(gameObject);
-
     }
 
+    IEnumerator DestroyAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (!hasHit)
+        {
+            Destroy(gameObject);
+        }
+    }
 }
