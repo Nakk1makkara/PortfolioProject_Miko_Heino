@@ -2499,9 +2499,17 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1329895570}
+    - target: {fileID: 784569290591939731, guid: cc94dd4579295d748ae24f3e7805fa42, type: 3}
+      propertyPath: m_Volume
+      value: 0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 1949588688201163173, guid: cc94dd4579295d748ae24f3e7805fa42, type: 3}
+      propertyPath: m_Volume
+      value: 0.163
+      objectReference: {fileID: 0}
     - target: {fileID: 2358526088184591253, guid: cc94dd4579295d748ae24f3e7805fa42, type: 3}
       propertyPath: m_Volume
-      value: 0.353
+      value: 0.222
       objectReference: {fileID: 0}
     - target: {fileID: 2358526088184591253, guid: cc94dd4579295d748ae24f3e7805fa42, type: 3}
       propertyPath: m_PlayOnAwake
@@ -2509,7 +2517,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7903234002837184762, guid: cc94dd4579295d748ae24f3e7805fa42, type: 3}
       propertyPath: maxAmmo
-      value: 150
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7903234002837184762, guid: cc94dd4579295d748ae24f3e7805fa42, type: 3}
       propertyPath: ammoText
@@ -2982,7 +2990,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c3e29df6582631c4a90e63fab77471cc, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.131
+  m_Volume: 0.062
   m_Pitch: 1
   Loop: 0
   Mute: 0

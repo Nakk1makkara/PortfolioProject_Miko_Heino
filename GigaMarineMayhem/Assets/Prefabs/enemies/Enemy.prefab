@@ -377,7 +377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 7903234002837184767, guid: cc94dd4579295d748ae24f3e7805fa42, type: 3}
-  speed: 5.7
+  speed: 4
 --- !u!114 &7519120635029056450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -405,7 +405,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 557d573f99e866044a2fc134c4f5505e, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.187
+  m_Volume: 0.034
   m_Pitch: 1
   Loop: 0
   Mute: 0
