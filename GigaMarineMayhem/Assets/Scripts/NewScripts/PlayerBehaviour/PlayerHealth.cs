@@ -7,12 +7,12 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth = 100;
     public int health;
     public HealthBar healthBar;
+    public AudioSource hitSound;
 
     void Start()
     {
         health = maxHealth;
 
-       
         if (healthBar == null)
         {
             Debug.LogError("Health bar reference not set!");
@@ -22,8 +22,13 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
+
         
-        
+        if (hitSound != null)
+        {
+            hitSound.Play();
+        }
+
         UpdateHealthBar();
 
         if (health <= 0)
@@ -34,7 +39,6 @@ public class PlayerHealth : MonoBehaviour
 
     void UpdateHealthBar()
     {
-       
         healthBar.UpdateHealthBar(health, maxHealth);
     }
 }

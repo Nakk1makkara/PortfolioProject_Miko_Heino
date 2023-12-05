@@ -16,10 +16,10 @@ public class Shooting : MonoBehaviour
     private bool isShooting = false;
     private bool isReloading = false;
 
-    public TextMeshProUGUI ammoText; // Reference to the TextMeshProUGUI component on your HUD
+    public TextMeshProUGUI ammoText; 
 
-    public AudioSource shootingAudioSource; // Reference to the AudioSource component for shooting sound
-    public AudioSource reloadAudioSource;   // Reference to the AudioSource component for reload sound
+    public AudioSource shootingAudioSource; 
+    public AudioSource reloadAudioSource;  
 
     void Start()
     {
