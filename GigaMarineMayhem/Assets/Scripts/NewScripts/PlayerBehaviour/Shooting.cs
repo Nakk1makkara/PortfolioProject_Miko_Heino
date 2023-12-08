@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class Shooting : MonoBehaviour
 {
@@ -24,41 +25,45 @@ public class Shooting : MonoBehaviour
     private bool isShooting = false;
     private bool isReloading = false;
 
-    private bool isShootingRoutineActive = false; // Add this flag
+    private bool isShootingRoutineActive = false;
 
     public TextMeshProUGUI ammoText;
 
+    
+    public Image shotgunImage;
+    public Image lmgImage;
+
     void Start()
     {
+       
         SwitchWeapon(currentWeaponIndex);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) // LMG
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             SwitchWeapon(0);
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2)) // Shotgun
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             SwitchWeapon(1);
         }
-        // Add more conditions for other weapon keys if needed
 
         if (Input.GetButtonDown("Fire1") && !isShooting && !isReloading)
         {
-            if (currentWeaponIndex == 0) // LMG
+            if (currentWeaponIndex == 0)
             {
                 isShooting = true;
                 StartCoroutine(ContinuousLMGFire());
             }
-            else if (currentWeaponIndex == 1 && !isShootingRoutineActive) // Shotgun
+            else if (currentWeaponIndex == 1 && !isShootingRoutineActive)
             {
                 isShooting = true;
                 StartCoroutine(ShootRoutine());
             }
         }
-        else if (Input.GetButtonUp("Fire1") && currentWeaponIndex == 0) // Stop LMG fire on button release
+        else if (Input.GetButtonUp("Fire1") && currentWeaponIndex == 0)
         {
             isShooting = false;
         }
@@ -69,41 +74,33 @@ public class Shooting : MonoBehaviour
         currentWeaponIndex = Mathf.Clamp(index, 0, weapons.Length - 1);
         currentAmmo = weapons[currentWeaponIndex].maxAmmo;
         UpdateAmmoText();
+
+        
+        shotgunImage.gameObject.SetActive(currentWeaponIndex == 0);
+        lmgImage.gameObject.SetActive(currentWeaponIndex == 1);
     }
 
     IEnumerator ShootRoutine()
     {
-        // Set the flag to indicate the routine is active
         isShootingRoutineActive = true;
 
-        // Debug statement
         Debug.Log("Playing Shooting Sound");
 
-        // Play shooting sound once
         weapons[currentWeaponIndex].shootingAudioSource.Play();
 
-        // Fire a single bullet for the shotgun
         Shoot();
-
 
         if (currentAmmo <= 0)
         {
             yield return StartCoroutine(Reload());
         }
 
-        // Reset the flag when the routine is finished
         isShootingRoutineActive = false;
-        isShooting = false; // Reset the isShooting flag
+        isShooting = false;
     }
-
-
-
-
-
 
     IEnumerator ContinuousLMGFire()
     {
-        // Play shooting sound continuously while shooting
         weapons[currentWeaponIndex].shootingAudioSource.Play();
 
         while (Input.GetButton("Fire1") && currentAmmo > 0)
@@ -112,7 +109,6 @@ public class Shooting : MonoBehaviour
             yield return new WaitForSeconds(weapons[currentWeaponIndex].shootingInterval);
         }
 
-        // Stop shooting sound
         weapons[currentWeaponIndex].shootingAudioSource.Stop();
 
         if (currentAmmo <= 0)
@@ -128,7 +124,6 @@ public class Shooting : MonoBehaviour
         isReloading = true;
         ammoText.text = "Reloading...";
 
-        // Play reload sound
         weapons[currentWeaponIndex].reloadAudioSource.Play();
 
         yield return new WaitForSeconds(weapons[currentWeaponIndex].reloadTime);
@@ -142,11 +137,11 @@ public class Shooting : MonoBehaviour
         currentAmmo--;
         UpdateAmmoText();
 
-        if (currentWeaponIndex == 1) // Shotgun
+        if (currentWeaponIndex == 1)
         {
-            for (int i = 0; i < 10; i++) // Adjust the number of bullets in the cone as needed
+            for (int i = 0; i < 10; i++)
             {
-                float angle = Random.Range(-15f, 15f); // Adjust the spread angle as needed
+                float angle = Random.Range(-15f, 15f);
                 Quaternion rotation = Quaternion.Euler(0f, 0f, angle);
                 Vector3 bulletDirection = rotation * weapons[currentWeaponIndex].firePoint.up;
 
@@ -155,9 +150,8 @@ public class Shooting : MonoBehaviour
                 rb.AddForce(bulletDirection * weapons[currentWeaponIndex].bulletForce, ForceMode2D.Impulse);
             }
         }
-        else // Other weapons (e.g., LMG)
+        else
         {
-            // Only instantiate one bullet for other weapons
             GameObject bullet = Instantiate(weapons[currentWeaponIndex].bulletPrefab, weapons[currentWeaponIndex].firePoint.position, weapons[currentWeaponIndex].firePoint.rotation);
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.AddForce(weapons[currentWeaponIndex].firePoint.up * weapons[currentWeaponIndex].bulletForce, ForceMode2D.Impulse);
@@ -168,5 +162,4 @@ public class Shooting : MonoBehaviour
     {
         ammoText.text = "Ammo: " + currentAmmo.ToString();
     }
-    
 }

@@ -6,12 +6,11 @@ public class Enemy : MonoBehaviour
     public GameObject deathEffect;
     public AudioSource hitSound; 
 
-    // Reference to the progress bar
     private ProgressBar progressBar;
 
     private void Start()
     {
-        // Find the ProgressBar script in the scene
+        
         progressBar = FindObjectOfType<ProgressBar>();
 
         if (progressBar == null)
@@ -30,7 +29,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            PlayHitSound(); // Play sound when taking damage
+            PlayHitSound(); 
         }
     }
 
@@ -39,7 +38,7 @@ public class Enemy : MonoBehaviour
         Instantiate(deathEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
 
-        // Notify the progress bar that an enemy has been killed
+        
         if (progressBar != null)
         {
             progressBar.GoalAchieved();

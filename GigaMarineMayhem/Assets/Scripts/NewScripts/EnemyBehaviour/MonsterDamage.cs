@@ -5,7 +5,7 @@ using UnityEngine;
 public class MonsterDamage : MonoBehaviour
 {
     public int damage;
-    public float damageInterval = 1.0f; // Adjust the interval as needed
+    public float damageInterval = 1.0f; 
     public PlayerHealth playerHealth;
     private bool isDealingDamage = false;
 
@@ -23,7 +23,7 @@ public class MonsterDamage : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            // Start dealing continuous damage
+            
             isDealingDamage = true;
             StartCoroutine(DealContinuousDamage());
         }
@@ -33,7 +33,7 @@ public class MonsterDamage : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            // Stop dealing continuous damage when the player exits the collision
+            
             isDealingDamage = false;
         }
     }
@@ -42,7 +42,7 @@ public class MonsterDamage : MonoBehaviour
     {
         while (isDealingDamage)
         {
-            // Deal damage and wait for the specified interval
+            
             playerHealth.TakeDamage(damage);
             yield return new WaitForSeconds(damageInterval);
         }
