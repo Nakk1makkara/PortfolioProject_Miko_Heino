@@ -4,6 +4,7 @@ public class AudioManager : MonoBehaviour
 {
     public AudioSource backgroundMusic;
     public AudioSource levelCompleteMusic;
+    public AudioSource DeathScreen;
 
     private void Start()
     {
@@ -32,6 +33,21 @@ public class AudioManager : MonoBehaviour
         if (levelCompleteMusic != null)
         {
             levelCompleteMusic.Play();
+        }
+    }
+
+    public void PlayDeathMusic()
+    {
+        // Stop the background music
+        if (backgroundMusic != null)
+        {
+            backgroundMusic.Stop();
+        }
+
+        // Play the level complete music
+        if (DeathScreen != null)
+        {
+            DeathScreen.Play();
         }
     }
 }

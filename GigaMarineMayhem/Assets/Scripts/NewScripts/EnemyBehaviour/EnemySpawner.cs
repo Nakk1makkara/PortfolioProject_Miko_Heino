@@ -49,7 +49,7 @@ public class EnemySpawner : MonoBehaviour
                 monsterDamage.playerHealth = player.GetComponent<PlayerHealth>();
             }
 
-            // Pass the player reference to the AIchase script
+            
             AIchase aiChase = newEnemy.GetComponent<AIchase>();
             if (aiChase != null)
             {
@@ -57,7 +57,7 @@ public class EnemySpawner : MonoBehaviour
             }
         }
 
-        // Destroy any remaining enemies
+        
         DestroyRemainingEnemies();
     }
 

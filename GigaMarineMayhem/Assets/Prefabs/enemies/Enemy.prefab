@@ -184,8 +184,8 @@ MonoBehaviour:
   - {fileID: 2433349566456804889}
   - {fileID: 2433349567003162090}
   m_Bounds:
-    m_Center: {x: 0.06187898, y: 0.35980803, z: 0}
-    m_Extent: {x: 0.8841913, y: 1.1992024, z: 0}
+    m_Center: {x: 0.061879933, y: 0.35980803, z: 0}
+    m_Extent: {x: 0.8841902, y: 1.1992023, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dddc564373c44c94c89c6946c62fead4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 90
+  health: 100
   deathEffect: {fileID: 1768363113147554037, guid: 3d909d05b38318e43b102e504ee13db8, type: 3}
   hitSound: {fileID: 6897664946681337037}
 --- !u!58 &7569468371238838456
@@ -377,7 +377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 7903234002837184767, guid: cc94dd4579295d748ae24f3e7805fa42, type: 3}
-  speed: 4
+  speed: 5
 --- !u!114 &7519120635029056450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -390,7 +390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f15c42d12aa0194ca975ed22aa265fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 50
   damageInterval: 1
   playerHealth: {fileID: 532852352984099484, guid: cc94dd4579295d748ae24f3e7805fa42, type: 3}
 --- !u!82 &6897664946681337037

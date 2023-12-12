@@ -8,14 +8,27 @@ public class PlayerHealth : MonoBehaviour
     public int health;
     public HealthBar healthBar;
     public AudioSource hitSound;
+    public GameObject deathScreen;
+    private AudioManager audioManager;
 
     void Start()
     {
         health = maxHealth;
 
+        audioManager = FindObjectOfType<AudioManager>();
+
         if (healthBar == null)
         {
             Debug.LogError("Health bar reference not set!");
+        }
+
+        if (deathScreen == null)
+        {
+            Debug.LogError("Death screen reference not set!");
+        }
+        else
+        {
+            deathScreen.SetActive(false);
         }
     }
 
@@ -23,7 +36,6 @@ public class PlayerHealth : MonoBehaviour
     {
         health -= damage;
 
-        
         if (hitSound != null)
         {
             hitSound.Play();
@@ -33,7 +45,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (health <= 0)
         {
-            Destroy(gameObject);
+            Die();
         }
     }
 
@@ -41,4 +53,21 @@ public class PlayerHealth : MonoBehaviour
     {
         healthBar.UpdateHealthBar(health, maxHealth);
     }
+
+    void Die()
+    {
+        if (deathScreen != null)
+        {
+            deathScreen.SetActive(true);
+        }
+
+        if (audioManager != null)
+        {
+            audioManager.PlayDeathMusic();
+        }
+
+
+        Destroy(gameObject);
+    }
+
 }
