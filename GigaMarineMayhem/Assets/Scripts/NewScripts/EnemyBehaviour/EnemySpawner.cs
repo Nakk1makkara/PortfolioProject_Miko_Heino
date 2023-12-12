@@ -1,20 +1,21 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject swarmerPrefab;
-    [SerializeField]
-    private float swarmerInterval = 3.5f;
+    [SerializeField] private GameObject swarmerPrefab;
+    [SerializeField] private GameObject otherEnemyPrefab;
+    [SerializeField] private float swarmerSpawnRate = 3.5f;
+    [SerializeField] private float otherEnemySpawnRate = 5f;
     private GameObject player;
     public ProgressBar progressBar;
     private bool isLevelCompleted = false;
 
+    // Reference to the spawn point
+    [SerializeField] private Transform spawnPoint;
+
     void Start()
     {
-        
         player = GameObject.FindGameObjectWithTag("Player");
 
         if (player == null)
@@ -22,43 +23,67 @@ public class EnemySpawner : MonoBehaviour
             Debug.LogError("Player not found in the scene. Make sure the player has the 'Player' tag.");
         }
 
-       
+        // If no spawn point is assigned, use the current object's transform as the spawn point
+        if (spawnPoint == null)
+        {
+            spawnPoint = transform;
+        }
+
         StartCoroutine(SpawnEnemyRoutine());
     }
 
     private IEnumerator SpawnEnemyRoutine()
     {
-        while (true) 
+        while (true)
         {
-            
             if (progressBar != null && progressBar.IsLevelComplete())
             {
                 isLevelCompleted = true;
-                break; 
+                break;
             }
 
-            yield return new WaitForSeconds(swarmerInterval);
+            float randomX = Random.Range(-5f, 5f);
+            float randomY = Random.Range(-6f, 6f);
+            Vector3 spawnPosition = spawnPoint.position + new Vector3(randomX, randomY, 0);
 
-            
-            GameObject newEnemy = Instantiate(swarmerPrefab, new Vector3(Random.Range(-5f, 5), Random.Range(-6, 6f), 0), Quaternion.identity);
+            yield return new WaitForSeconds(RandomSpawnInterval());
 
-            
-            MonsterDamage monsterDamage = newEnemy.GetComponent<MonsterDamage>();
-            if (monsterDamage != null)
+            GameObject newEnemy;
+            float randomEnemy = Random.value;
+
+            if (randomEnemy < swarmerSpawnRate / (swarmerSpawnRate + otherEnemySpawnRate))
             {
-                monsterDamage.playerHealth = player.GetComponent<PlayerHealth>();
+                newEnemy = Instantiate(swarmerPrefab, spawnPosition, Quaternion.identity);
+            }
+            else
+            {
+                newEnemy = Instantiate(otherEnemyPrefab, spawnPosition, Quaternion.identity);
             }
 
-            
-            AIchase aiChase = newEnemy.GetComponent<AIchase>();
-            if (aiChase != null)
-            {
-                aiChase.player = player;
-            }
+            AttachComponentsToEnemy(newEnemy);
         }
 
-        
         DestroyRemainingEnemies();
+    }
+
+    private float RandomSpawnInterval()
+    {
+        return Random.Range(swarmerSpawnRate, swarmerSpawnRate + otherEnemySpawnRate);
+    }
+
+    private void AttachComponentsToEnemy(GameObject enemy)
+    {
+        MonsterDamage monsterDamage = enemy.GetComponent<MonsterDamage>();
+        if (monsterDamage != null)
+        {
+            monsterDamage.playerHealth = player.GetComponent<PlayerHealth>();
+        }
+
+        AIchase aiChase = enemy.GetComponent<AIchase>();
+        if (aiChase != null)
+        {
+            aiChase.player = player;
+        }
     }
 
     private void DestroyRemainingEnemies()

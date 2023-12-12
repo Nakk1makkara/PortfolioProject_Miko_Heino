@@ -21,7 +21,7 @@ public class ProgressBar : MonoBehaviour
             Debug.LogError("Progress bar image, TMP text, or Level Completed panel not assigned in the inspector!");
         }
 
-        // Find and store the AudioManager in the scene
+        
         audioManager = FindObjectOfType<AudioManager>();
 
         if (audioManager == null)
@@ -75,23 +75,23 @@ public class ProgressBar : MonoBehaviour
     {
         isLevelComplete = true;
 
-        // Show the Level Completed panel
+        
         if (levelCompletePanel != null)
         {
             levelCompletePanel.SetActive(true);
         }
 
-        // Implement logic for when the level is complete
+        
         Debug.Log("Level complete!");
 
-        // Notify the AudioManager to play level complete music
+        
         if (audioManager != null)
         {
             audioManager.PlayLevelCompleteMusic();
         }
     }
 
-    // Allow setting the total goals in the Unity Editor
+    
     #if UNITY_EDITOR
     void OnValidate()
     {

@@ -40790,6 +40790,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &1887914567 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 266633694792922989, guid: 2eefee45c9776504facfc49d018c35ce, type: 3}
+  m_PrefabInstance: {fileID: 3167430919352255173}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1889507586
 GameObject:
   m_ObjectHideFlags: 0
@@ -46175,11 +46180,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3167430920079468041, guid: 2eefee45c9776504facfc49d018c35ce, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.47
+      value: 36.23
       objectReference: {fileID: 0}
     - target: {fileID: 3167430920079468041, guid: 2eefee45c9776504facfc49d018c35ce, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.27
+      value: -13.4
       objectReference: {fileID: 0}
     - target: {fileID: 3167430920079468041, guid: 2eefee45c9776504facfc49d018c35ce, type: 3}
       propertyPath: m_LocalPosition.z
@@ -46214,6 +46219,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3167430920079468046, guid: 2eefee45c9776504facfc49d018c35ce, type: 3}
+      propertyPath: spawnPoint
+      value: 
+      objectReference: {fileID: 1887914567}
+    - target: {fileID: 3167430920079468046, guid: 2eefee45c9776504facfc49d018c35ce, type: 3}
       propertyPath: progressBar
       value: 
       objectReference: {fileID: 1596201974}
@@ -46221,6 +46230,10 @@ PrefabInstance:
       propertyPath: swarmerInterval
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 3167430920079468046, guid: 2eefee45c9776504facfc49d018c35ce, type: 3}
+      propertyPath: otherEnemyPrefab
+      value: 
+      objectReference: {fileID: 8822124210679294742, guid: fb70538ca615c824bab8f3f6c074ce23, type: 3}
     - target: {fileID: 3167430920079468047, guid: 2eefee45c9776504facfc49d018c35ce, type: 3}
       propertyPath: m_Name
       value: EnemySpawner

@@ -1,12 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AIchase : MonoBehaviour
 {
     public GameObject player;
     public float speed;
-
     private float distance;
 
     // Start is called before the first frame update
@@ -29,5 +27,3 @@ public class AIchase : MonoBehaviour
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 }
-
-
