@@ -29,13 +29,13 @@ public class Shooting : MonoBehaviour
 
     public TextMeshProUGUI ammoText;
 
-    
     public Image shotgunImage;
     public Image lmgImage;
 
+    private bool isInfiniteAmmoActive = false;
+
     void Start()
     {
-       
         SwitchWeapon(currentWeaponIndex);
     }
 
@@ -67,6 +67,11 @@ public class Shooting : MonoBehaviour
         {
             isShooting = false;
         }
+
+        if (Input.GetKeyDown(KeyCode.R) && !isReloading)
+        {
+            StartCoroutine(Reload());
+        }
     }
 
     void SwitchWeapon(int index)
@@ -75,7 +80,6 @@ public class Shooting : MonoBehaviour
         currentAmmo = weapons[currentWeaponIndex].maxAmmo;
         UpdateAmmoText();
 
-        
         shotgunImage.gameObject.SetActive(currentWeaponIndex == 0);
         lmgImage.gameObject.SetActive(currentWeaponIndex == 1);
     }
@@ -134,7 +138,11 @@ public class Shooting : MonoBehaviour
 
     void Shoot()
     {
-        currentAmmo--;
+        if (!isInfiniteAmmoActive)
+        {
+            currentAmmo--;
+        }
+
         UpdateAmmoText();
 
         if (currentWeaponIndex == 1)
@@ -160,6 +168,25 @@ public class Shooting : MonoBehaviour
 
     void UpdateAmmoText()
     {
-        ammoText.text = "Ammo: " + currentAmmo.ToString();
+        if (isInfiniteAmmoActive)
+        {
+            ammoText.text = "Ammo: Infinite";
+        }
+        else
+        {
+            ammoText.text = "Ammo: " + currentAmmo.ToString();
+        }
+    }
+
+    public void EnableInfiniteAmmo()
+    {
+        isInfiniteAmmoActive = true;
+        UpdateAmmoText();
+    }
+
+    public void DisableInfiniteAmmo()
+    {
+        isInfiniteAmmoActive = false;
+        UpdateAmmoText();
     }
 }

@@ -15,7 +15,7 @@ public class MonsterDamage : MonoBehaviour
 
         if (playerHealth == null)
         {
-            Debug.LogError("PlayerHealth component not found in the scene.");
+            Debug.LogError("PlayerHealth component not found");
         }
     }
 

@@ -18,15 +18,14 @@ public class ProgressBar : MonoBehaviour
     {
         if (progressBarImage == null || progressText == null || levelCompletePanel == null)
         {
-            Debug.LogError("Progress bar image, TMP text, or Level Completed panel not assigned in the inspector!");
+            Debug.LogError("Progress bar image TMP text Level Completed panel not assigned");
         }
 
-        
         audioManager = FindObjectOfType<AudioManager>();
 
         if (audioManager == null)
         {
-            Debug.LogError("AudioManager script not found in the scene.");
+            Debug.LogError("AudioManager script not found");
         }
 
         InitializeProgressBar();
@@ -75,28 +74,24 @@ public class ProgressBar : MonoBehaviour
     {
         isLevelComplete = true;
 
-        
         if (levelCompletePanel != null)
         {
             levelCompletePanel.SetActive(true);
         }
 
-        
-        Debug.Log("Level complete!");
+        Debug.Log("Level complete");
 
-        
         if (audioManager != null)
         {
             audioManager.PlayLevelCompleteMusic();
         }
     }
 
-    
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
     void OnValidate()
     {
         if (totalGoals < 1)
             totalGoals = 1;
     }
-    #endif
+#endif
 }

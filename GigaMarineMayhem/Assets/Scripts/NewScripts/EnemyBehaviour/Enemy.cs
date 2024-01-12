@@ -4,18 +4,21 @@ public class Enemy : MonoBehaviour
 {
     public int health = 100;
     public GameObject deathEffect;
-    public AudioSource hitSound; 
+    public AudioSource hitSound;
+
+    public GameObject[] powerUps;
+    public float dropChance = 0.2f;
 
     private ProgressBar progressBar;
+    private bool hasAchievedGoal = false;
 
-    private void Start()
+    void Start()
     {
-        
         progressBar = FindObjectOfType<ProgressBar>();
 
         if (progressBar == null)
         {
-            Debug.LogError("ProgressBar script not found in the scene.");
+            Debug.LogError("ProgressBar script not found");
         }
     }
 
@@ -29,19 +32,24 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            PlayHitSound(); 
+            PlayHitSound();
         }
     }
 
     void Die()
     {
-        Instantiate(deathEffect, transform.position, Quaternion.identity);
-        Destroy(gameObject);
-
-        
-        if (progressBar != null)
+        if (!hasAchievedGoal)
         {
-            progressBar.GoalAchieved();
+            Instantiate(deathEffect, transform.position, Quaternion.identity);
+            SpawnPowerUp();
+
+            Destroy(gameObject);
+
+            if (progressBar != null)
+            {
+                progressBar.GoalAchieved();
+                hasAchievedGoal = true;
+            }
         }
     }
 
@@ -50,6 +58,16 @@ public class Enemy : MonoBehaviour
         if (hitSound != null)
         {
             hitSound.Play();
+        }
+    }
+
+    void SpawnPowerUp()
+    {
+        if (Random.value < dropChance)
+        {
+            GameObject powerUpPrefab = powerUps[Random.Range(0, powerUps.Length)];
+
+            Instantiate(powerUpPrefab, transform.position, Quaternion.identity);
         }
     }
 }

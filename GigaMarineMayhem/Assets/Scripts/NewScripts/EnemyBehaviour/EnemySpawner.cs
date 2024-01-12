@@ -11,7 +11,6 @@ public class EnemySpawner : MonoBehaviour
     public ProgressBar progressBar;
     private bool isLevelCompleted = false;
 
-    
     [SerializeField] private Transform spawnPoint;
 
     void Start()
@@ -20,10 +19,9 @@ public class EnemySpawner : MonoBehaviour
 
         if (player == null)
         {
-            Debug.LogError("Player not found in the scene. Make sure the player has the 'Player' tag.");
+            Debug.LogError("Player not found in the scene");
         }
 
-        
         if (spawnPoint == null)
         {
             spawnPoint = transform;

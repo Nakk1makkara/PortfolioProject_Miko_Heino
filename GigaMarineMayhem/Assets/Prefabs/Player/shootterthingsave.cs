@@ -39,7 +39,6 @@ public class shootterthingsave : MonoBehaviour
     {
         isShooting = true;
 
-        // Play shooting sound continuously while shooting
         shootingAudioSource.Play();
 
         while (Input.GetButton("Fire1") && currentAmmo > 0)
@@ -47,8 +46,6 @@ public class shootterthingsave : MonoBehaviour
             Shoot();
             yield return new WaitForSeconds(shootingInterval);
         }
-
-        // Stop shooting sound
         shootingAudioSource.Stop();
 
         if (currentAmmo <= 0)
@@ -63,8 +60,6 @@ public class shootterthingsave : MonoBehaviour
     {
         isReloading = true;
         ammoText.text = "Reloading...";
-
-        // Play reload sound
         reloadAudioSource.Play();
 
         yield return new WaitForSeconds(reloadTime);

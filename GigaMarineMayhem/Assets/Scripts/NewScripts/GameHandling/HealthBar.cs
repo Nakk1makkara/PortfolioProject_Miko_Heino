@@ -11,7 +11,7 @@ public class HealthBar : MonoBehaviour
     {
         if (healthBarImage == null || healthText == null)
         {
-            Debug.LogError("Health bar image or TMP text not assigned in the inspector!");
+            Debug.LogError("Health bar image or TMP text not assigned in the inspector");
         }
     }
 

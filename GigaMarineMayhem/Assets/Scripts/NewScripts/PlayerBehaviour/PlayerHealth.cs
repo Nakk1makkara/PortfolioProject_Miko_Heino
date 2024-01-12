@@ -19,12 +19,12 @@ public class PlayerHealth : MonoBehaviour
 
         if (healthBar == null)
         {
-            Debug.LogError("Health bar reference not set!");
+            Debug.LogError("Health bar reference not set");
         }
 
         if (deathScreen == null)
         {
-            Debug.LogError("Death screen reference not set!");
+            Debug.LogError("Death screen reference not set");
         }
         else
         {
